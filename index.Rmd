@@ -6,7 +6,7 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-##INTRODUCTION
+# Introduction
 
 In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate.  In broad, national terms, the debate has largely taken shape around geographic constraints.  This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. This implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration. 
 
@@ -47,7 +47,7 @@ ggplot() +
 
 I will primarily be examining this hypothesis through using the residents of the city of El Paso, TX (circled above) as a case study.  El Paso is one of Texas largest border cities, and is directly across the border from Juárez, Chihuahua, México.  In September of this year, El Paso's mayor Oscar Leeser said that the city has reached a "breaking point", as more than 2,000 migrants seek asylum in the city every day (https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/).  Thus, this provides a salient and immediate example of a border town whose populous is intimately familiar with the implications of increased immigration from Latin America.
 
-##The Data
+# The Data
 In order to study the hypothesis, I plan to use data from August 2023 University of Texas/Texas Politics Project Poll.  My explanatory, independent variable will be an individual’s city of residence, and the dependent variable will be an individual’s view of immigration.  This is quantified in the Q20_grid_A, wherein individuals rank how seriously the perceive the threat of immigration, from “extremely serious” (1) to "not serious" (5) along with options for “no opinion” or to skip.
 
 ```{r}
@@ -75,7 +75,7 @@ https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_pol
 Poll Crosstabs:
 https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf)
 
-##Tidying and Mutating the Data
+# Tidying and Mutating the Data
 
 ```{r}
 library(tidyverse)
@@ -87,7 +87,7 @@ UT_data <- UT_data |>
   mutate(im_id = if_else(Q20_grid_A == 1 | Q20_grid_A == 2, 0, 1))
 ```
 
-##Summary Plot of the Dependent Variable
+# Summary Plot of the Dependent Variable
 
 ```{r}
 EP_Scatter <- ggplot(data = UT_data, mapping = aes(x = city, y = Q20_grid_A)) +
@@ -112,7 +112,7 @@ UT_data |>
 
 In this graph, we can see more clearly that respondents living in El Paso have a higher average score on the immigration ideology test, as compared to the broader respondents in all of Texas.  Although the data shows that El Paso residents have a more tolerant view of immigration, we now must proceed to analyze the data to determine the exact relationship between this two factors. 
 
-##Results
+# Results
 
 Difference in Means of immigration ideology and El Paso residence. 
 
@@ -129,9 +129,7 @@ imm_DIM |>
   kable_material(c("striped", "hover"))
 ```
 
-From this difference in means, we can see that there is a clear difference in immigration ideology depending on border town residence.  Resident in El Paso are more likely to have a warmer view towards immigration (closer to 1), as compared to the average Texan. 
-
-From here, we must determine whether this difference is related to or caused by border town residence.  In order to do so, I will calculate the confidence interval for the above difference in means. 
+From this difference in means, we can see that there is a clear difference in immigration ideology depending on border town residence.  Resident in El Paso are more likely to have a warmer view towards immigration (closer to 1), as compared to the average Texan. From here, we must determine whether this difference is related to or caused by border town residence.  In order to do so, I will calculate the confidence interval for the above difference in means. 
 ```{r}
 library(infer)
 set.seed(02138)
@@ -162,4 +160,6 @@ modelsummary :: modelsummary(
   gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 
-##Conclusions
+# Conclusions
+
+blah blah blah not statistically significant but age statistically significant so i would suggest studying this relationship more carefully 

@@ -129,6 +129,8 @@ imm_DIM |>
   kable_material(c("striped", "hover"))
 ```
 
+
+
 From this difference in means, we can see that there is a clear difference in immigration ideology depending on border town residence.  Resident in El Paso are more likely to have a warmer view towards immigration (closer to 1), as compared to the average Texan. From here, we must determine whether this difference is related to or caused by border town residence.  In order to do so, I will calculate the confidence interval for the above difference in means. 
 ```{r}
 library(infer)

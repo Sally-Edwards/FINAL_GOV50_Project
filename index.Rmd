@@ -100,6 +100,8 @@ EP_Scatter
 ```
 As stated above, my dependent variable for this study are the respondents' views on immigration. As can be seen above, the dataset includes approximately 1,200 responses, divided in the ideological gradient between 1 and 5.  Whereas this is largely skewed torward 1 for the overall dataset --- meaning that that more Texans view immigration as pressing --- the datapoints of respondents living in El Paso are more evenly distributed.
 
+# Results
+
 ```{r}
 UT_data |>
   ggplot(aes(x = factor(city), y = Q20_grid_A)) +
@@ -110,11 +112,9 @@ UT_data |>
   theme_minimal()
 ```
 
-In this graph, we can see more clearly that respondents living in El Paso have a higher average score on the immigration ideology test, as compared to the broader respondents in all of Texas.  Although the data shows that El Paso residents have a more tolerant view of immigration, we now must proceed to analyze the data to determine the exact relationship between this two factors. 
+Here, we can see more clearly that respondents living in El Paso have a higher average score on the immigration ideology test, as compared to the broader respondents in all of Texas.  Although the data shows that El Paso residents have a more tolerant view of immigration, we now must proceed to analyze the data to determine the exact relationship between this two factors. 
 
-# Results
-
-Difference in Means of immigration ideology and El Paso residence. 
+In order to more thoroughly investigate this relationship, I will conduct a difference in means analysis of immigration ideology and El Paso residence. 
 
 ```{r}
 imm_DIM<- UT_data |>
@@ -128,8 +128,6 @@ imm_DIM |>
   kbl()|>
   kable_material(c("striped", "hover"))
 ```
-
-
 
 From this difference in means, we can see that there is a clear difference in immigration ideology depending on border town residence.  Resident in El Paso are more likely to have a warmer view towards immigration (closer to 1), as compared to the average Texan. From here, we must determine whether this difference is related to or caused by border town residence.  In order to do so, I will calculate the confidence interval for the above difference in means. 
 ```{r}
@@ -148,14 +146,18 @@ ate_ci_95 |>
   kbl()|>
   kable_material(c("striped", "hover"))
 ```
-Since this confidence interval does not include 0, we know that we can firmly reject the null hypothesis.  Thus, we can accept that there is a possibility that border town residence has an effect on an individual's views toward immigration. 
-
-In order to more fully explore this relationship, I will create a linear regression with the city of residence, hispanic identity, and age as the independent variables, and the immigration ideology as the dependent variable. 
+Since the above confidence interval does not include 0, we know that we can firmly reject the null hypothesis.  Thus, we can accept that there is a possibility that border town residence has an effect on an individual's views toward immigration. In order to more fully explore this relationship, I will create a linear regression with the city of residence, Hispanic identity, and age as the independent variables, and the immigration ideology as the dependent variable. 
 
 ```{r}
 library(broom) 
 
 imid_city_change <- lm(im_id ~ city + birthyr + hispanic, data = UT_data)
+
+var_labels <- c(
+  "cityElPaso" = "El Paso Residency",
+  "birthyr" = "Age",
+  "hispanic" = "Hispanic Ethnicity"
+  )
 
 modelsummary :: modelsummary(
   imid_city_change, 
@@ -165,5 +167,5 @@ modelsummary :: modelsummary(
 ```
 
 # Conclusions
+Because the p-value is 0.204, I can conclude that living in a border city such as El Paso does not have any statistically significant impact on an individual's view of immigration.  However, in future studies, I would suggest that researchers more carefully investigate the relationship between an invdividual's birth year and their opinions on immigration.  This variable's p-value is <0.001, and thus extremely statistically significant. 
 
-blah blah blah not statistically significant but age statistically significant so i would suggest studying this relationship more carefully 

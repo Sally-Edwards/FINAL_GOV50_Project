@@ -8,13 +8,11 @@ output:
 ---
 # Introduction
 
-In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate.  In broad, national terms, the debate has largely taken shape around geographic constraints.  This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. This implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration. 
+In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate.  Political leaders like Florida Governor Ron DeSantis and Texas Governor Greg Abbott have sought to frame the debate in geographic terms, portraying Southern states as bearing the brunt of the processes' negative ramifications. This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. Thus, this logic implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration. 
 
 However, I would like to evaluate the extent of this truth -- as a Texan with family located in border cities and more interior towns, I can say from anecdotal evidence that this is not always the case. I believe that using data science to inform the conversation could help to develop a more nuanced understanding of both the issue and Texan voter's opinions. 
 
-For my final project, I want to examine the relationship between opinion on immigration in Texas as compared to border town residence.  Simply put, does living in a border city in Texas make you more likely to have a negative view of immigration?  As border security has become an increasingly salient issue on the national political stage, it is all too easy for national politicians to make sweeping generalizations about the opinions of Texas voters without diving into the nuances of the multifaceted demographic. 
-
-Immigration has become a central tenet of the GOP platform, and political figures — like Governor Greg Abbott or Senator Ted Cruz — have repeatedly framed the issue as immediately pressing and easily positionable.  However, I believe that individuals who live close to border towns will have a more nuanced view of this issue, possibly due to the fact that they have a higher personal relationship to the immigration process. My hypothesis is that individuals who are from border cities will view immigration as less of a concerning issue than the average Texan.
+For my final project, will examine the relationship between immigration ideolgoy in Texas as compared to border town residence.  Simply put, does living in a border city in Texas make you more likely to have a negative view of immigration?  As border security has become an increasingly salient issue on the national political stage, it is all too easy for national politicians to make sweeping generalizations about the opinions of Texas voters without diving into the nuances of the multifaceted demographic. However, I believe that individuals who live close to border towns will have a more nuanced view of this issue, possibly due to the fact that they have a higher personal relationship to the immigration process. My hypothesis is that individuals who are from border cities will view immigration as less of a concerning issue than the average Texan.
 
 ```{r}
 ##Set Up
@@ -45,7 +43,7 @@ ggplot() +
        y = "longitude") 
 ```
 
-I will primarily be examining this hypothesis through using the residents of the city of El Paso, TX (circled above) as a case study.  El Paso is one of Texas largest border cities, and is directly across the border from Juárez, Chihuahua, México.  In September of this year, El Paso's mayor Oscar Leeser said that the city has reached a "breaking point", as more than 2,000 migrants seek asylum in the city every day (https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/).  Thus, this provides a salient and immediate example of a border town whose populous is intimately familiar with the implications of increased immigration from Latin America.
+I will primarily be examining this hypothesis through using the residents of the city of El Paso, TX (circled above) as a case study.  El Paso is one of Texas largest border cities, and is directly across the border from Juárez, Chihuahua, México.  In September of this year, El Paso's mayor Oscar Leeser said that the city has reached a "breaking point", as more than 2,000 migrants seek asylum in the city every day. Thus, this provides a salient and immediate example of a border town whose populous is intimately familiar with the implications of increased immigration from Latin America.
 
 # The Data
 In order to study the hypothesis, I plan to use data from August 2023 University of Texas/Texas Politics Project Poll.  My explanatory, independent variable will be an individual’s city of residence, and the dependent variable will be an individual’s view of immigration.  This is quantified in the Q20_grid_A, wherein individuals rank how seriously the perceive the threat of immigration, from “extremely serious” (1) to "not serious" (5) along with options for “no opinion” or to skip.
@@ -63,17 +61,6 @@ UT_data_sample|>
 ```
 
 In order to study and evaluate these variables, I will transform these variables into binary indicators.  For the city, I will create a new variable that will sort the results into two categories -- El Paso, for respondents living in El Paso County, or Av. Texas, for respondents living in all other Texas counties who will represent the control group. Further, in terms of immigration ideology, I will sort answers of 1s or 2s into one category of individuals who view immigration as pressing, and responses of 3s, 4s, or 5s will be categorized as not pressing. In order for my hypothesis to be proven, respondents living in El Paso County will disproportionately fit into the former category, as compared to the control group of the other Texas counties. 
-
-Data Sourced from the Texas Politics Project and the University of Texas at Austin: August 2023 University of Texas/Texas Politics Project Poll https://texaspolitics.utexas.edu/polling-data-archive
-
-Codebook -- paragraph references Q20 and “zipcode":
-https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf
-
-Poll Summary: 
-https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf
-
-Poll Crosstabs:
-https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf)
 
 # Tidying and Mutating the Data
 
@@ -129,6 +116,8 @@ imm_DIM |>
   kable_material(c("striped", "hover"))
 ```
 
+
+
 From this difference in means, we can see that there is a clear difference in immigration ideology depending on border town residence.  Resident in El Paso are more likely to have a warmer view towards immigration (closer to 1), as compared to the average Texan. From here, we must determine whether this difference is related to or caused by border town residence.  In order to do so, I will calculate the confidence interval for the above difference in means. 
 ```{r}
 library(infer)
@@ -154,13 +143,14 @@ library(broom)
 imid_city_change <- lm(im_id ~ city + birthyr + hispanic, data = UT_data)
 
 var_labels <- c(
-  "cityElPaso" = "El Paso Residency",
+  "cityEl Paso" = "El Paso Residency",
   "birthyr" = "Age",
   "hispanic" = "Hispanic Ethnicity"
   )
 
 modelsummary :: modelsummary(
-  imid_city_change, 
+  imid_city_change,
+  coef_map = var_labels, 
   statistic = c ("s.e. = {std.error}",
                  "p = {p.value}"),
   gof_map = c("nobs", "r.squared", "adj.r.squared"))
@@ -170,4 +160,20 @@ modelsummary :: modelsummary(
 Because the p-value is 0.204, I can conclude that living in a border city such as El Paso does not have any statistically significant impact on an individual's view of immigration.  Thus, I cannot prove that my hypothesis that living in a border city causes individuals to have a more tolerant view toward immigration. While there is no missing data in the dataset that would affect this conclusion, a possible factor which could influence the result is that this process did not completely dissaggregate every response from an individual living in a border town from that of the rest of Texas.  In other words, this study specifically compared the results of individuals living in El Paso with the results of every other respondent, which included a small amount of individuals living in other border cities.  In future experiements, I suggest that researchers fully disaggregate this data in order to further examine this trend. 
 
 Additionally, in future studies, I would suggest that researchers more carefully investigate the relationship between an invdividual's birth year and their opinions on immigration.  This variable's p-value is <0.001, and thus extremely statistically significant. 
+
+#Works Cited
+
+Data Sourced from the Texas Politics Project and the University of Texas at Austin: August 2023 University of Texas/Texas Politics Project Poll https://texaspolitics.utexas.edu/polling-data-archive
+
+Codebook:
+https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf
+
+Poll Summary: 
+https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf
+
+Poll Crosstabs:
+https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf
+
+Reuters Interview with El Paso Mayor:
+https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/
 

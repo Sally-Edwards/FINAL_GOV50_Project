@@ -144,7 +144,9 @@ ate_boots <- UT_data |>
 
 ate_ci_95 <- ate_boots |>
   get_confidence_interval (level = 0.95)
-ate_ci_95
+ate_ci_95 |>
+  kbl()|>
+  kable_material(c("striped", "hover"))
 ```
 Since this confidence interval does not include 0, we know that we can firmly reject the null hypothesis.  Thus, we can accept that there is a possibility that border town residence has an effect on an individual's views toward immigration. 
 

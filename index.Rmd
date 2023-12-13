@@ -161,7 +161,7 @@ Because the p-value is 0.204, I can conclude that living in a border city such a
 
 Additionally, in future studies, I would suggest that researchers more carefully investigate the relationship between an invdividual's birth year and their opinions on immigration.  This variable's p-value is <0.001, and thus extremely statistically significant. 
 
-#Works Cited
+# Works Cited
 
 Data Sourced from the Texas Politics Project and the University of Texas at Austin: August 2023 University of Texas/Texas Politics Project Poll https://texaspolitics.utexas.edu/polling-data-archive
 

@@ -1546,10 +1546,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h1 id="introduction">Introduction</h1>
-<p>In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate. In broad, national terms, the debate has largely taken shape around geographic constraints. This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. This implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration.</p>
+<p>In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate. Political leaders like Florida Governor Ron DeSantis and Texas Governor Greg Abbott have sought to frame the debate in geographic terms, portraying Southern states as bearing the brunt of the processes’ negative ramifications. This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. Thus, this logic implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration.</p>
 <p>However, I would like to evaluate the extent of this truth – as a Texan with family located in border cities and more interior towns, I can say from anecdotal evidence that this is not always the case. I believe that using data science to inform the conversation could help to develop a more nuanced understanding of both the issue and Texan voter’s opinions.</p>
-<p>For my final project, I want to examine the relationship between opinion on immigration in Texas as compared to border town residence. Simply put, does living in a border city in Texas make you more likely to have a negative view of immigration? As border security has become an increasingly salient issue on the national political stage, it is all too easy for national politicians to make sweeping generalizations about the opinions of Texas voters without diving into the nuances of the multifaceted demographic.</p>
-<p>Immigration has become a central tenet of the GOP platform, and political figures — like Governor Greg Abbott or Senator Ted Cruz — have repeatedly framed the issue as immediately pressing and easily positionable. However, I believe that individuals who live close to border towns will have a more nuanced view of this issue, possibly due to the fact that they have a higher personal relationship to the immigration process. My hypothesis is that individuals who are from border cities will view immigration as less of a concerning issue than the average Texan.</p>
+<p>For my final project, will examine the relationship between immigration ideolgoy in Texas as compared to border town residence. Simply put, does living in a border city in Texas make you more likely to have a negative view of immigration? As border security has become an increasingly salient issue on the national political stage, it is all too easy for national politicians to make sweeping generalizations about the opinions of Texas voters without diving into the nuances of the multifaceted demographic. However, I believe that individuals who live close to border towns will have a more nuanced view of this issue, possibly due to the fact that they have a higher personal relationship to the immigration process. My hypothesis is that individuals who are from border cities will view immigration as less of a concerning issue than the average Texan.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>##Set Up</span></span>
@@ -1582,7 +1581,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<p>I will primarily be examining this hypothesis through using the residents of the city of El Paso, TX (circled above) as a case study. El Paso is one of Texas largest border cities, and is directly across the border from Juárez, Chihuahua, México. In September of this year, El Paso’s mayor Oscar Leeser said that the city has reached a “breaking point”, as more than 2,000 migrants seek asylum in the city every day (<a href="https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/" class="uri">https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/</a>). Thus, this provides a salient and immediate example of a border town whose populous is intimately familiar with the implications of increased immigration from Latin America.</p>
+<p>I will primarily be examining this hypothesis through using the residents of the city of El Paso, TX (circled above) as a case study. El Paso is one of Texas largest border cities, and is directly across the border from Juárez, Chihuahua, México. In September of this year, El Paso’s mayor Oscar Leeser said that the city has reached a “breaking point”, as more than 2,000 migrants seek asylum in the city every day. Thus, this provides a salient and immediate example of a border town whose populous is intimately familiar with the implications of increased immigration from Latin America.</p>
 <h1 id="the-data">The Data</h1>
 <p>In order to study the hypothesis, I plan to use data from August 2023 University of Texas/Texas Politics Project Poll. My explanatory, independent variable will be an individual’s city of residence, and the dependent variable will be an individual’s view of immigration. This is quantified in the Q20_grid_A, wherein individuals rank how seriously the perceive the threat of immigration, from “extremely serious” (1) to “not serious” (5) along with options for “no opinion” or to skip.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1725,13 +1724,6 @@ Dallas TX
 </table>
 </div>
 <p>In order to study and evaluate these variables, I will transform these variables into binary indicators. For the city, I will create a new variable that will sort the results into two categories – El Paso, for respondents living in El Paso County, or Av. Texas, for respondents living in all other Texas counties who will represent the control group. Further, in terms of immigration ideology, I will sort answers of 1s or 2s into one category of individuals who view immigration as pressing, and responses of 3s, 4s, or 5s will be categorized as not pressing. In order for my hypothesis to be proven, respondents living in El Paso County will disproportionately fit into the former category, as compared to the control group of the other Texas counties.</p>
-<p>Data Sourced from the Texas Politics Project and the University of Texas at Austin: August 2023 University of Texas/Texas Politics Project Poll <a href="https://texaspolitics.utexas.edu/polling-data-archive" class="uri">https://texaspolitics.utexas.edu/polling-data-archive</a></p>
-<p>Codebook – paragraph references Q20 and “zipcode”:
-<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf</a></p>
-<p>Poll Summary:
-<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf</a></p>
-<p>Poll Crosstabs:
-<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf</a>)</p>
 <h1 id="tidying-and-mutating-the-data">Tidying and Mutating the Data</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1864,13 +1856,14 @@ upper_ci
 <span><span class='va'>imid_city_change</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>im_id</span> <span class='op'>~</span> <span class='va'>city</span> <span class='op'>+</span> <span class='va'>birthyr</span> <span class='op'>+</span> <span class='va'>hispanic</span>, data <span class='op'>=</span> <span class='va'>UT_data</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>var_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
-<span>  <span class='st'>"cityElPaso"</span> <span class='op'>=</span> <span class='st'>"El Paso Residency"</span>,</span>
+<span>  <span class='st'>"cityEl Paso"</span> <span class='op'>=</span> <span class='st'>"El Paso Residency"</span>,</span>
 <span>  <span class='st'>"birthyr"</span> <span class='op'>=</span> <span class='st'>"Age"</span>,</span>
 <span>  <span class='st'>"hispanic"</span> <span class='op'>=</span> <span class='st'>"Hispanic Ethnicity"</span></span>
 <span>  <span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'>modelsummary</span> <span class='fu'>::</span> <span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span></span>
-<span>  <span class='va'>imid_city_change</span>, </span>
+<span>  <span class='va'>imid_city_change</span>,</span>
+<span>  coef_map <span class='op'>=</span> <span class='va'>var_labels</span>, </span>
 <span>  statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> <span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
 <span>                 <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
 <span>  gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
@@ -1888,29 +1881,7 @@ upper_ci
 <tbody>
 <tr>
 <td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:center;">
-−8.887
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.991
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = &lt;0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-cityEl Paso
+El Paso Residency
 </td>
 <td style="text-align:center;">
 0.222
@@ -1932,7 +1903,7 @@ p = 0.204
 </tr>
 <tr>
 <td style="text-align:left;">
-birthyr
+Age
 </td>
 <td style="text-align:center;">
 0.005
@@ -1954,7 +1925,7 @@ p = &lt;0.001
 </tr>
 <tr>
 <td style="text-align:left;">
-hispanic
+Hispanic Ethnicity
 </td>
 <td style="text-align:center;">
 0.130
@@ -2004,6 +1975,16 @@ R2 Adj.
 <h1 id="conclusions">Conclusions</h1>
 <p>Because the p-value is 0.204, I can conclude that living in a border city such as El Paso does not have any statistically significant impact on an individual’s view of immigration. Thus, I cannot prove that my hypothesis that living in a border city causes individuals to have a more tolerant view toward immigration. While there is no missing data in the dataset that would affect this conclusion, a possible factor which could influence the result is that this process did not completely dissaggregate every response from an individual living in a border town from that of the rest of Texas. In other words, this study specifically compared the results of individuals living in El Paso with the results of every other respondent, which included a small amount of individuals living in other border cities. In future experiements, I suggest that researchers fully disaggregate this data in order to further examine this trend.</p>
 <p>Additionally, in future studies, I would suggest that researchers more carefully investigate the relationship between an invdividual’s birth year and their opinions on immigration. This variable’s p-value is &lt;0.001, and thus extremely statistically significant.</p>
+<p>#Works Cited</p>
+<p>Data Sourced from the Texas Politics Project and the University of Texas at Austin: August 2023 University of Texas/Texas Politics Project Poll <a href="https://texaspolitics.utexas.edu/polling-data-archive" class="uri">https://texaspolitics.utexas.edu/polling-data-archive</a></p>
+<p>Codebook:
+<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/utex0055d_codebook.pdf</a></p>
+<p>Poll Summary:
+<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_topline.pdf</a></p>
+<p>Poll Crosstabs:
+<a href="https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf" class="uri">https://texaspolitics.utexas.edu/sites/texaspolitics.utexas.edu/files/202308_poll_crosstabs.pdf</a></p>
+<p>Reuters Interview with El Paso Mayor:
+<a href="https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/" class="uri">https://www.reuters.com/world/americas/el-paso-texas-at-breaking-point-migrants-flood-border-mayor-says-2023-09-23/</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

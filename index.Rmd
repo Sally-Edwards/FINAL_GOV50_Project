@@ -134,6 +134,9 @@ ate_ci_95 |>
   kbl()|>
   kable_material(c("striped", "hover"))
 ```
+
+
+
 Since the above confidence interval does not include 0, we know that we can firmly reject the null hypothesis.  Thus, we can accept that there is a possibility that border town residence has an effect on an individual's views toward immigration. In order to more fully explore this relationship, I will create a linear regression with the city of residence, Hispanic identity, and age as the independent variables, and the immigration ideology as the dependent variable. 
 
 ```{r}

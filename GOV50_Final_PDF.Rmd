@@ -1,11 +1,15 @@
 ---
-title: "Gov 50 Final Project"
+title: "GOV50_Final_PDF"
 author: "Sally Edwards"
-description: "Examining the impact of border residency on immigration ideology in Texas."
-output:
-  distill::distill_article:
-    self_contained: false
+description: Examining the impact of border residency on immigration ideology in Texas."
+date: "2023-12-13"
+output: pdf_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Introduction
 
 In many of the past election cycles, immigration has taken a front-and-center position as one of the most salient topics of debate.  Political leaders like Florida Governor Ron DeSantis and Texas Governor Greg Abbott have sought to frame the debate in geographic terms, portraying Southern states as bearing the brunt of the processes' negative ramifications. This specific framing often portrays immigration as an issue which issue is practically concerning for voters who live close to the border, while citizens who live farther away are more likely to take a moralistic view of the situation. Thus, this logic implies that citizens who live in border cities will see the supposed negative ramifications of increased immigration in their everyday lives, and thus will be more prone to have a negative view of immigration. 
